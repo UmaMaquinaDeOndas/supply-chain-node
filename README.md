@@ -1,6 +1,6 @@
-# canvas-node
+# Wiv Supply Chain
 
-Node implementation for Canvas, a Substrate chain for smart contracts.
+This is a fork of canvas-node repo: node implementation for Canvas, a Substrate chain for smart contracts.
 
 ## Note
 
@@ -14,20 +14,17 @@ Latest commit confirmed working: https://github.com/paritytech/substrate/tree/f8
 
 ## Usage
 
-To run local dev node, do
+Apart from Rust and GCC, you need to have LLVM and Clang on your machine in order to compile Substrate:
 
-```
-cargo run --release -- --dev
-```
-
-To run test net 1, do
-
-```
-cargo run --release
+```bash
+# Fedora or CentOS
+dnf install llvm llvm-devel clang
 ```
 
-or
+To run local development node, execute:
 
-```
-cargo run --release -- --chain=./res/testnet-1.json
+```bash
+make init
+make build
+make run
 ```
