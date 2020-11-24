@@ -1,4 +1,6 @@
 IMAGE ?= supply-chain
+IMAGE_DEV ?= $(IMAGE)-dev
+
 DOCKER ?= docker #you can use "podman" as well
 
 .PHONY: init
@@ -29,12 +31,12 @@ release:
 
 .PHONY: dev-docker-build
 dev-docker-build:
-	@$(DOCKER) build -t $(IMAGE)-dev .
+	@$(DOCKER) build -t $(IMAGE_DEV) .
 
 .PHONY: dev-docker-run
 dev-docker-run:
-	@$(DOCKER) run --net=host -it --rm $(IMAGE)-dev --dev --tmp
+	@$(DOCKER) run --net=host -it --rm $(IMAGE_DEV) --dev --tmp
 
 .PHONY: dev-docker-inspect
 dev-docker-inspect:
-	@$(DOCKER) run --net=host -it --rm --entrypoint /bin/bash $(IMAGE)-dev
+	@$(DOCKER) run --net=host -it --rm --entrypoint /bin/bash $(IMAGE_DEV)
