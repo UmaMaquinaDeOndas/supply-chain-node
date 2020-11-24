@@ -1,6 +1,11 @@
+IMAGE ?= supply-chain
+DOCKER ?= docker #you can use "podman" as well
+
 .PHONY: init
 init:
-	./scripts/init.sh
+	rustup update nightly-2020-10-05
+	rustup update stable
+	rustup target add wasm32-unknown-unknown --toolchain nightly-2020-10-05
 
 .PHONY: check
 check:
@@ -16,4 +21,20 @@ run:
 
 .PHONY: build
 build:
-	WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
+	WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release --all
+
+.PHONY: release
+release:
+	@$(DOCKER) build --no-cache --squash -t $(IMAGE) .
+
+.PHONY: dev-docker-build
+dev-docker-build:
+	@$(DOCKER) build -t $(IMAGE)-dev .
+
+.PHONY: dev-docker-run
+dev-docker-run:
+	@$(DOCKER) run --net=host -it --rm $(IMAGE)-dev --dev --tmp
+
+.PHONY: dev-docker-inspect
+dev-docker-inspect:
+	@$(DOCKER) run --net=host -it --rm --entrypoint /bin/bash $(IMAGE)-dev

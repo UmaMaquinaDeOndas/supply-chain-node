@@ -1,7 +1,7 @@
 stages:
 - init
-- check
 - build
+- release
 
 init:
   stage: init
@@ -23,3 +23,9 @@ build:
   - bash --version
   - make build
   - make test
+
+release:
+  stage: release
+  when: manual
+  script:
+  - make release
