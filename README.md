@@ -1,18 +1,12 @@
 # Wiv Supply Chain
 
-This is a fork of canvas-node repo: node implementation for Canvas, a Substrate chain for smart contracts.
+## Running node
 
-## Note
+### Run project with docker
 
-The master branch is currently tracking substrate master in order to include various fixes. Therefore it may not
- build if there are breaking changes.
+TODO
 
-If it fails to build/install, use the cargo `--locked` flag to ensures that the most recent working version of
- substrate will be used.
-
-Latest commit confirmed working: https://github.com/paritytech/substrate/tree/cab986549f964a081343336797bb6cf6b3526335
-
-## Usage
+### Run project without docker
 
 Apart from Rust and GCC, you need to have LLVM and Clang on your machine in order to compile Substrate:
 
@@ -28,3 +22,15 @@ make init
 make build
 make run
 ```
+
+## Note
+
+This is a fork of canvas-node repo: node implementation for Canvas, a Substrate chain for smart contracts.
+
+The master branch is currently tracking substrate master in order to include various fixes. Therefore it may not
+ build if there are breaking changes.
+
+If it fails to build/install, use the cargo `--locked` flag to ensures that the most recent working version of
+ substrate will be used.
+
+Latest commit confirmed working: https://github.com/paritytech/substrate/tree/cab986549f964a081343336797bb6cf6b3526335
