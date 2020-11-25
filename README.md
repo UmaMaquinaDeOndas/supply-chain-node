@@ -4,7 +4,11 @@
 
 ### Run project with docker
 
-TODO
+The simplest way to try it out:
+
+```bash
+docker run --rm -it --net host wivt/supply-chain:latest
+```
 
 ### Run project without docker
 
