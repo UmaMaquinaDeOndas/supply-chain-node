@@ -1,11 +1,17 @@
-FROM paritytech/ci-linux:production
+FROM rustlang/rust:nightly-buster-slim as builder
+RUN apt-get update && apt-get dist-upgrade -y
+RUN apt-get install -y make git pkg-config openssl libssl-dev
+RUN apt-get install -y llvm llvm-dev clang
 
-COPY . /builds
+RUN mkdir build
+COPY . /build
+WORKDIR /build
+
 RUN make init && make build
-RUN mv /builds/target/release/canvas /bin/canvas
-RUN cp /builds/res/testnet-1.json /etc/testnet-1.json
 
-ENV WASM_BUILD_TOOLCHAIN nightly-2020-10-05
+FROM debian:buster-slim
+COPY --from=builder /build/target/release/canvas /bin/canvas
+COPY --from=builder /build/res/testnet-1.json /etc/testnet-1.json
 
 ENTRYPOINT ["/bin/canvas"]
 CMD ["--chain", "/etc/testnet-1.json"]
