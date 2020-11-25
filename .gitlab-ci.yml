@@ -29,3 +29,8 @@ release:
   when: manual
   script:
   - make release
+  - docker login -u kirillt -p $DOCKERHUB_TOKEN
+  - docker tag supply-chain wivt/supply-chain:$CI_COMMIT_SHORT_SHA 
+  - docker tag supply-chain wivt/supply-chain:latest
+  - docker push wivt/supply-chain:$CI_COMMIT_SHORT_SHA 
+  - docker push wivt/supply-chain:latest
