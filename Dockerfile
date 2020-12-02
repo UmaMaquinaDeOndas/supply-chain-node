@@ -14,4 +14,4 @@ COPY --from=builder /build/target/release/canvas /bin/canvas
 COPY --from=builder /build/res/testnet-1.json /etc/testnet-1.json
 
 ENTRYPOINT ["/bin/canvas"]
-CMD ["--chain", "/etc/testnet-1.json"]
+CMD ["--dev"]
