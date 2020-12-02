@@ -8,6 +8,7 @@ init:
 	rustup update nightly-2020-10-05
 	rustup update stable
 	rustup target add wasm32-unknown-unknown --toolchain nightly-2020-10-05
+	cargo install cargo-contract --force
 
 .PHONY: check
 check:
@@ -24,6 +25,11 @@ run:
 .PHONY: build
 build:
 	WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release --all
+
+.PHONY: contract
+contract:
+	cd erc721
+	cargo +nightly-2020-10-05 contract build
 
 .PHONY: release
 release:

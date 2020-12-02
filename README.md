@@ -27,6 +27,17 @@ make build
 make run
 ```
 
+After, the node is built, you may want to compile ERC-721 smart contract:
+```bash
+# installing Cargo plugin first:
+cargo install cargo-contract --force
+
+cd erc721
+cargo contract build
+```
+
+You can deploy it later using Canvas UI.
+
 ## Note
 
 This is a fork of canvas-node repo: node implementation for Canvas, a Substrate chain for smart contracts.

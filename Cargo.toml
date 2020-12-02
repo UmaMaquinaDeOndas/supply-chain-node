@@ -3,5 +3,9 @@ members = [
     'node',
     'runtime',
 ]
+exclude = [
+    'erc721',
+]
+
 [profile.release]
 panic = 'unwind'
