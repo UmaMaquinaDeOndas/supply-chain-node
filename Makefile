@@ -5,15 +5,9 @@ DOCKER ?= docker #you can use "podman" as well
 
 .PHONY: init
 init:
-	# for building the node itself:
 	rustup update nightly-2020-10-05
 	rustup update stable
 	rustup target add wasm32-unknown-unknown --toolchain nightly-2020-10-05
-	# for building ERC-721 contract:
-	rustup update nightly
-	rustup +nightly component add rust-src
-	cargo +nightly install cargo-contract --force
-	rustup target add wasm32-unknown-unknown --toolchain nightly
 
 .PHONY: check
 check:
@@ -33,6 +27,10 @@ build:
 
 .PHONY: contract
 contract:
+	rustup update nightly
+	rustup +nightly component add rust-src
+	cargo +nightly install cargo-contract --force
+	rustup target add wasm32-unknown-unknown --toolchain nightly
 	cd erc721 && cargo +nightly contract build
 
 .PHONY: release

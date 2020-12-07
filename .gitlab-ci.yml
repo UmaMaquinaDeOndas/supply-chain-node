@@ -38,6 +38,7 @@ build-contract:
   - make contract
 
 release:
+  <<: *env-info
   stage: release
   when: manual
   script:
