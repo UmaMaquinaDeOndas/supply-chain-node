@@ -25,6 +25,7 @@ build:
   - make test
 
 release:
+  <<: *env-info
   stage: release
   when: manual
   script:
