@@ -5,6 +5,7 @@ DOCKER ?= docker #you can use "podman" as well
 
 .PHONY: init
 init:
+	rustup self update
 	rustup update stable
 	rustup update nightly-2020-10-05
 	rustup target add wasm32-unknown-unknown --toolchain nightly-2020-10-05

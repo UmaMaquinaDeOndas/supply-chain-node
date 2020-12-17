@@ -16,7 +16,7 @@ Apart from Rust and GCC, you need to have LLVM and Clang on your machine in orde
 
 ```bash
 # Fedora or CentOS
-dnf install llvm llvm-devel clang
+dnf install llvm llvm-devel clang cmake
 ```
 
 To run local development node, execute:
