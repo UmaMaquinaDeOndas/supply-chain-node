@@ -30,10 +30,11 @@ build-contract:
   <<: *env-info
   stage: build
   script:
+  - cd erc721
   - cargo-contract --version
-  - make contract
+  - make build
 
-release:
+release-node:
   <<: *env-info
   stage: release
   when: manual
@@ -44,3 +45,16 @@ release:
   - docker tag supply-chain wivt/supply-chain:latest
   - docker push wivt/supply-chain:$CI_COMMIT_SHORT_SHA 
   - docker push wivt/supply-chain:latest
+
+release-contract:
+  <<: *env-info
+  stage: release
+  when: manual
+  script:
+  - cd erc721
+  - make release
+  - docker login -u kirillt -p $DOCKERHUB_TOKEN
+  - docker tag supply-chain-erc721 wivt/supply-chain-erc721:$CI_COMMIT_SHORT_SHA 
+  - docker tag supply-chain-erc721 wivt/supply-chain-erc721:latest
+  - docker push wivt/supply-chain-erc721:$CI_COMMIT_SHORT_SHA 
+  - docker push wivt/supply-chain-erc721:latest

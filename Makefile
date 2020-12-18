@@ -27,14 +27,6 @@ run:
 build:
 	WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release --all
 
-.PHONY: contract
-contract:
-	rustup update nightly
-	rustup +nightly component add rust-src
-	cargo +nightly install cargo-contract --force
-	rustup target add wasm32-unknown-unknown --toolchain nightly
-	cd erc721 && cargo +nightly contract build
-
 .PHONY: release
 release:
 	@$(DOCKER) build --no-cache --squash -t $(IMAGE) .
