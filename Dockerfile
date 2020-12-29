@@ -10,7 +10,7 @@ WORKDIR /build
 RUN make init && make build
 
 FROM debian:buster-slim
-COPY --from=builder /build/target/release/canvas /bin/
+COPY --from=builder /build/target/release/node-wivsupplychain /bin/
 
-ENTRYPOINT ["/bin/canvas"]
+ENTRYPOINT ["/bin/node-wivsupplychain"]
 CMD ["--dev", "--ws-external"]
