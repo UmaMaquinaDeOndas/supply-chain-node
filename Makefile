@@ -21,11 +21,11 @@ test:
 
 .PHONY: run
 run:
-	WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo run --release -- --dev --tmp
+	cargo run +nightly-2020-10-05 run  --release --all --dev --tmp
 
 .PHONY: build
 build:
-	WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release --all
+	cargo  +nightly-2020-10-05 build --release --all
 
 .PHONY: release
 release:
