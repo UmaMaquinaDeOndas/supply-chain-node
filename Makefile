@@ -6,10 +6,9 @@ DOCKER ?= docker #you can use "podman" as well
 .PHONY: init
 init:
 	rustup self update
-	rustup update stable
 	rustup update nightly-2020-10-05
 	rustup target add wasm32-unknown-unknown --toolchain nightly-2020-10-05
-	rustup default stable
+	rustup default nightly-2020-10-05
 
 .PHONY: check
 check:
@@ -21,12 +20,11 @@ test:
 
 .PHONY: run
 run:
-	cargo +nightly-2020-10-05 build  --release --all
-	target/release/node-wivsupplychain --dev --tmp
+	cargo run --release -- --dev --tmp
 
 .PHONY: build
 build:
-	cargo  +nightly-2020-10-05 build --release --all
+	cargo build --release --all
 
 .PHONY: release
 release:
