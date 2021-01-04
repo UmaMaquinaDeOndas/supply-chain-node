@@ -3,12 +3,6 @@ use sp_std::prelude::*;
 use frame_support::{decl_module, decl_event, decl_storage, ensure, decl_error,dispatch};
 use frame_system::ensure_signed;
 
-#[cfg(test)]
-mod mock;
-
-#[cfg(test)]
-mod tests;
-
 /// pallet parameters definition
 pub trait Trait: frame_system::Trait {	
 	type Event: From<Event<Self>> + Into<<Self as frame_system::Trait>::Event>;
