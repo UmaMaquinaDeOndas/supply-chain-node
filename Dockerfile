@@ -12,5 +12,7 @@ RUN make init && make build
 FROM debian:buster-slim
 COPY --from=builder /build/target/release/node-wivsupplychain /bin/
 
+RUN mkdir /data
+
 ENTRYPOINT ["/bin/node-wivsupplychain"]
-CMD ["--dev", "--ws-external"]
+CMD ["--dev", "--ws-external", "--base-path", "/data"]
