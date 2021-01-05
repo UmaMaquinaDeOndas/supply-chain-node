@@ -21,7 +21,8 @@ test:
 
 .PHONY: run
 run:
-	cargo run +nightly-2020-10-05 run  --release --all --dev --tmp
+	cargo +nightly-2020-10-05 build  --release --all
+	target/release/node-wivsupplychain --dev --tmp
 
 .PHONY: build
 build:
