@@ -24,6 +24,9 @@ decl_event!(
 		/// Asset has been transferred (base64 encoding + json)
 		/// [Asset, AccountId]
 		AssetTransferred(Vec<u8>, AccountId),
+		/// Asset has been approved (base64 encoding + json)
+		/// [Asset, AccountId]
+		AssetApproved(Vec<u8>, AccountId),
 		/// Asset has been removed (base64 encoding + json)
 		/// [Asset, AccountId]
 		AssetRemoved(Vec<u8>, AccountId),
@@ -79,7 +82,24 @@ decl_module! {
 			// Return a successful DispatchResult
 			Ok(())
 		}
-		/// Transfer of an asset
+		/// Approve of an asset
+		#[weight = 1000]
+		pub fn approve_asset(origin, asset: Vec<u8>) -> dispatch::DispatchResult {
+			// Check that the extrinsic was signed and get the signer.
+			let sender = ensure_signed(origin)?;
+			ensure!(asset.is_empty(), Error::<T>::NoneValue); //check not empty
+			ensure!(asset.len() >= 16, Error::<T>::TooShort); //check minimum length
+			ensure!(asset.len() <= 8192, Error::<T>::TooLong);  // check maximum length
+			// Update storage.
+			let assetapproval=asset.clone();
+			//todo: add control on previous asset/property
+			<Asset<T>>::insert(&sender, assetapproval);
+			// Emit an event
+			Self::deposit_event(RawEvent::AssetApproved(asset, sender));
+			// Return a successful DispatchResult
+			Ok(())
+		}
+		/// Cancellation of an asset
 		#[weight = 500_000]
 		pub fn remove_asset(origin, asset: Vec<u8>) -> dispatch::DispatchResult {
 			// Check that the extrinsic was signed and get the signer.

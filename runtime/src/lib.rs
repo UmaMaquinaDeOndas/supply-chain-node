@@ -91,7 +91,7 @@ pub mod opaque {
 }
 
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("node-wiwsupplychain"),
+	spec_name: create_runtime_str!("node-wivsupplychain"),
 	impl_name: create_runtime_str!("node-wivsupplychain"),
 	authoring_version: 1,
 	spec_version: 1,
@@ -280,9 +280,9 @@ construct_runtime!(
 		Balances: pallet_balances::{Module, Call, Storage, Config<T>, Event<T>},
 		TransactionPayment: pallet_transaction_payment::{Module, Storage},
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
+
 		// Wiv Supply Chain Pallet
 		WivSupplyChain: pallet_wivsupplychain::{Module, Call, Storage, Event<T>},
-
 	}
 );
 
